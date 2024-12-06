@@ -100,13 +100,17 @@ class EstimuloController extends Controller
 
     public function recepcion1(Request $request)
     {
-        $registro = Estimulo::where('numEmpleado', '=', $request->empleado)->first();
-        if ($registro) {
-            $registro->estatus = 1;
-            $registro->fechaRegistro = now();
-            $registro->update();
-            return redirect('muestraRecepcion1')->with('success', '¡Registro Exitoso!');
-        }
+        $sql = "Update horariosEstimulo2024 set estatus=1, fechaRegistro='".now()."' where numEmpleado=".$request->empleado;
+        $registro = DB::update(DB::raw($sql)); 
+        return redirect('muestraRecepcion1')->with('success', '¡Registro Exitoso!');
+
+        // $registro = Estimulo::where('numEmpleado', '=', $request->empleado)->first();
+        // if ($registro) {
+        //     $registro->estatus = 1;
+        //     $registro->fechaRegistro = now();
+        //     $registro->update();
+        //     return redirect('muestraRecepcion1')->with('success', '¡Registro Exitoso!');
+        // }
     }
 
     public function reporte()
