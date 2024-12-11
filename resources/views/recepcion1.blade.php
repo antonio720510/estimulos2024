@@ -91,8 +91,7 @@
                                                 <!-- Botón para restablecer -->
                                     <button type="reset" class="btn btn-secondary" id="btnReset" title="Restablecer" style="font-size: 12px; margin-left: 10px">
                                         Restablecer    
-                                    </button>            
-                                    
+                                    </button>                                                
                                 </form>
                             </div>                            
                         </div>

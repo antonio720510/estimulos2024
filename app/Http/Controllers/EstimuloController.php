@@ -82,6 +82,7 @@ class EstimuloController extends Controller
     public function destroy($id)
     {
         //
+        
     }
 
     public function muestraRecepcion1()
