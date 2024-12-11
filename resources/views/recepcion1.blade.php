@@ -34,6 +34,7 @@
     
    
     <div class="row">
+
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div class="card">
                 <div class="header">
@@ -86,6 +87,11 @@
     
                                     <button type="submit" class="btn btn-success" name="btnRecep1" id="btnRecep1" title="Registrar Asistencia"
                                                 style='font-size:12px' value="Comprobante">Registrar</button>
+
+                                                <!-- Botón para restablecer -->
+                                    <button type="reset" class="btn btn-secondary" id="btnReset" title="Restablecer" style="font-size: 12px; margin-left: 10px">
+                                        Restablecer    
+                                    </button>                                                
                                 </form>
                             </div>                            
                         </div>

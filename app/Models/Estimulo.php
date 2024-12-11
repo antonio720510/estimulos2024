@@ -10,6 +10,6 @@ class Estimulo extends Model
     use HasFactory;
     //protected $table = 'EmpleadosEstimulo';
     //protected $fillable = ['numEmpleado', 'idEmpleado','paterno','materno','nombre','fechaRegistro','estatus'];
-    protected $table = 'horariosEstimulo';
+    protected $table = 'horariosEstimulo2024';
     protected $fillable = ['numEmpleado', 'paterno','materno','nombre','fechaRegistro','estatus', 'fechaentrega','horario'];
 }

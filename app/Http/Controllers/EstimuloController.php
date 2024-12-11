@@ -82,6 +82,7 @@ class EstimuloController extends Controller
     public function destroy($id)
     {
         //
+        
     }
 
     public function muestraRecepcion1()
@@ -100,19 +101,17 @@ class EstimuloController extends Controller
 
     public function recepcion1(Request $request)
     {
-	$sql = "Update horariosEstimulo2024 set estatus=1, fechaRegistro='".now()."' where numEmpleado=".$request->empleado;
+        $sql = "Update horariosEstimulo2024 set estatus=1, fechaRegistro='".now()."' where numEmpleado=".$request->empleado;
         $registro = DB::update(DB::raw($sql)); 
         return redirect('muestraRecepcion1')->with('success', '¡Registro Exitoso!');
 
-	/*    
-        $registro = Estimulo::where('numEmpleado', '=', $request->empleado)->first();
-        if ($registro) {
-            $registro->estatus = 1;
-            $registro->fechaRegistro = now();
-            $registro->update();
-            return redirect('muestraRecepcion1')->with('success', '¡Registro Exitoso!');
-	}
-	 */
+        // $registro = Estimulo::where('numEmpleado', '=', $request->empleado)->first();
+        // if ($registro) {
+        //     $registro->estatus = 1;
+        //     $registro->fechaRegistro = now();
+        //     $registro->update();
+        //     return redirect('muestraRecepcion1')->with('success', '¡Registro Exitoso!');
+        // }
     }
 
     public function reporte()
@@ -130,7 +129,7 @@ class EstimuloController extends Controller
             FROM horariosEstimulo2024 tt 
             WHERE DATE(fechaRegistro) BETWEEN '$request->fecha1' AND  '$request->fecha2'       
             ORDER BY fecha ASC";
-        
+       
         $fecha1 = $newDate = date("d/m/Y", strtotime($request->fecha1));
         $fecha2 = $newDate = date("d/m/Y", strtotime($request->fecha2));
 

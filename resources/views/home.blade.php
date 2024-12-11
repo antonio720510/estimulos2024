@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-
 <head>
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
@@ -333,6 +332,7 @@
                 $(".fechaHora").hide();
                 $("#btnRecep1").hide();
                 $("#btnRecep2").hide();
+                $("#btnReset").hide();
                 $("#btnNoAceptar").hide();
                 $("#btnBackRecep2").hide();
                 $("#btnBackRecep3").hide();
@@ -400,6 +400,7 @@
                             $("#materno").val($("#empleado option:selected").data('materno'));
                             $("#idEmpleado").val($("#empleado option:selected").data('idempleado'));
                             $("#btnRecep1").show();
+                            $("#btnReset").show();
                             $("#mesa").val($("#empleado option:selected").data('mesa'));
                             $("#fechaHora").val($("#empleado option:selected").data('fechahoraentrega'));
                             $(".mesa").show();
@@ -478,6 +479,13 @@
                     });
                 });
 
+                $('#btnReset').click(function() {
+                     
+                     location.reload();
+                                    
+                });
+                
+
 
             });
 
@@ -489,6 +497,7 @@
                 $("#datosgrales").text("");
                 $("#servpub").val('');
                 $("#servpub").focus();
+                $('#btnReset').hide();
             }
 
             // function NoAceptar()
