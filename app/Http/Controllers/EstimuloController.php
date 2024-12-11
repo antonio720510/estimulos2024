@@ -86,13 +86,13 @@ class EstimuloController extends Controller
 
     public function muestraRecepcion1()
     {                
-        $sql = "Select * from horariosEstimulo where estatus=0 order by nombre asc";
+        $sql = "Select * from horariosEstimulo2024 where estatus=0 order by nombre asc";
         $emps = DB::select(DB::raw($sql)); 
 
         $hoy = date_format(now(),'Y-m-d'); // fecha del dia en curso        
 
         // Querys para reportes estadísticos
-        $qry = "Select count(*) as total from horariosEstimulo where estatus = 1 AND (DATE(fechaRegistro) BETWEEN '$hoy' AND  '$hoy')";
+        $qry = "Select count(*) as total from horariosEstimulo2024 where estatus = 1 AND (DATE(fechaRegistro) BETWEEN '$hoy' AND  '$hoy')";
         $est1 = DB::select($qry);
 
         return view('recepcion1', compact('emps', 'est1'));
@@ -100,13 +100,19 @@ class EstimuloController extends Controller
 
     public function recepcion1(Request $request)
     {
+	$sql = "Update horariosEstimulo2024 set estatus=1, fechaRegistro='".now()."' where numEmpleado=".$request->empleado;
+        $registro = DB::update(DB::raw($sql)); 
+        return redirect('muestraRecepcion1')->with('success', '¡Registro Exitoso!');
+
+	/*    
         $registro = Estimulo::where('numEmpleado', '=', $request->empleado)->first();
         if ($registro) {
             $registro->estatus = 1;
             $registro->fechaRegistro = now();
             $registro->update();
             return redirect('muestraRecepcion1')->with('success', '¡Registro Exitoso!');
-        }
+	}
+	 */
     }
 
     public function reporte()
@@ -121,7 +127,7 @@ class EstimuloController extends Controller
             nombre,                          
             DATE_FORMAT(fechaRegistro,'%d/%m/%Y %H:%i:%s') fecha,             
             mesa
-            FROM horariosEstimulo tt 
+            FROM horariosEstimulo2024 tt 
             WHERE DATE(fechaRegistro) BETWEEN '$request->fecha1' AND  '$request->fecha2'       
             ORDER BY fecha ASC";
         
@@ -130,7 +136,7 @@ class EstimuloController extends Controller
 
         $datos = DB::select(DB::raw($qry));
         
-        $qry = "Select count(*) as total from horariosEstimulo where estatus = 1 AND (DATE(fechaRegistro) BETWEEN '$request->fecha1' AND  '$request->fecha2')";
+        $qry = "Select count(*) as total from horariosEstimulo2024 where estatus = 1 AND (DATE(fechaRegistro) BETWEEN '$request->fecha1' AND  '$request->fecha2')";
         $est1 = DB::select($qry);
 
         return view('reporte.repestimulos', compact('datos', 'fecha1','fecha2', 'est1'));
