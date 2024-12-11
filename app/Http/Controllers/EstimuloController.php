@@ -129,7 +129,7 @@ class EstimuloController extends Controller
             FROM horariosEstimulo2024 tt 
             WHERE DATE(fechaRegistro) BETWEEN '$request->fecha1' AND  '$request->fecha2'       
             ORDER BY fecha ASC";
-        
+       
         $fecha1 = $newDate = date("d/m/Y", strtotime($request->fecha1));
         $fecha2 = $newDate = date("d/m/Y", strtotime($request->fecha2));
 
